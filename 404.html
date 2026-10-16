@@ -2,6 +2,8 @@
 <html lang="en-IN" data-theme="dark" class="no-js">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; frame-src https://maps.google.com https://www.google.com; form-action mailto:; base-uri 'none'; object-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
 <title>Page not found | CyFocus</title>
@@ -27,14 +29,13 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/img/brand/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<script src="/assets/js/boot.js?v=2026100908"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/style.css?v=2026100909">
+<script src="/assets/js/boot.js?v=2026101601"></script>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css?v=2026101601">
 </head>
 <body data-page="404">
-<script src="/assets/js/icons.js?v=20261009"></script>
+<script src="/assets/js/icons.js?v=2026101601"></script>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="bg-scene" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span><span class="bg-grid"></span><span class="bg-noise"></span></div>
 <div class="preloader" aria-hidden="true"><div class="preloader-inner"><svg class="emblem-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g><path class="em-arc em-o" pathLength="1" d="M12.09 47.35A38 38 0 0 1 46.69 12.14"/><path class="em-arc em-o" pathLength="1" d="M53.31 12.14A38 38 0 0 1 87.91 47.35"/><path class="em-arc em-g" pathLength="1" d="M87.91 52.65A38 38 0 0 1 53.97 87.79"/><path class="em-arc em-g" pathLength="1" d="M46.03 87.79A38 38 0 0 1 12.09 52.65"/></g><rect class="em-bar" x="46.6" y="72" width="6.8" height="25" rx="1"/><path class="em-shield" d="M50 24C57 29.5 64 31 70 31V52C70 65 60 73 50 78C40 73 30 65 30 52V31C36 31 43 29.5 50 24Z"/><circle class="em-key" cx="50" cy="47" r="5.2"/><path class="em-key" d="M47.6 50h4.8l1.6 13h-8z"/></svg><div class="preloader-bar"><span></span></div></div></div>
@@ -65,7 +66,7 @@
 <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site menu">
   <div class="drawer-head">
     <a class="brand" href="/index.html" aria-label="CyFocus home"><img class="logo logo--dark" src="/assets/img/brand/logo-dark.webp" width="640" height="202" alt="CyFocus"><img class="logo logo--light" src="/assets/img/brand/logo-light.webp" width="640" height="202" alt="CyFocus"></a>
-    <div style="display:flex;gap:8px">
+    <div class="u-flex8">
       <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme"><svg class="ico i-sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="ico i-moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
       <button class="icon-btn" type="button" data-drawer-close aria-label="Close menu"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button>
     </div>
@@ -89,7 +90,7 @@
   <div class="nf-card glass" data-reveal="zoom">
     <svg class="emblem-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g><path class="em-arc em-o" pathLength="1" d="M12.09 47.35A38 38 0 0 1 46.69 12.14"/><path class="em-arc em-o" pathLength="1" d="M53.31 12.14A38 38 0 0 1 87.91 47.35"/><path class="em-arc em-g" pathLength="1" d="M87.91 52.65A38 38 0 0 1 53.97 87.79"/><path class="em-arc em-g" pathLength="1" d="M46.03 87.79A38 38 0 0 1 12.09 52.65"/></g><rect class="em-bar" x="46.6" y="72" width="6.8" height="25" rx="1"/><path class="em-shield" d="M50 24C57 29.5 64 31 70 31V52C70 65 60 73 50 78C40 73 30 65 30 52V31C36 31 43 29.5 50 24Z"/><circle class="em-key" cx="50" cy="47" r="5.2"/><path class="em-key" d="M47.6 50h4.8l1.6 13h-8z"/></svg>
     <div class="nf-code grad-text" data-text="404" aria-hidden="true">404</div>
-    <h1 style="font-size:clamp(1.6rem,3.4vw,2.2rem);margin-top:10px">This page slipped out of focus.</h1>
+    <h1 class="u-title-lg">This page slipped out of focus.</h1>
     <p class="muted">The page you are looking for does not exist or has moved. Try one of these instead.</p>
     <div class="nf-links">
       <a class="btn btn-primary" href="/index.html"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg>Back to home</a>
@@ -136,7 +137,7 @@
 </footer>
 <button class="to-top" type="button" aria-label="Back to top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
 <div class="toast-region" aria-live="polite" aria-atomic="false"></div>
-<script src="/assets/js/main.js?v=20261009" defer></script>
+<script src="/assets/js/main.js?v=2026101601" defer></script>
 
 </body>
 </html>

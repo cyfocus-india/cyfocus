@@ -2,6 +2,8 @@
 # CyFocus — production configuration for Apache / LiteSpeed (Hostinger)
 # Upload this file together with the site. The same security headers are
 # mirrored in `_headers` for Cloudflare Pages / Netlify. Keep both in sync.
+# GitHub Pages ignores this file (and `_headers`); there the CSP comes from the
+# <meta> tag in each page and the deploy workflow doesn't publish either file.
 # =============================================================================
 
 # No directory listings; don't advertise the server version
@@ -58,8 +60,9 @@ RedirectMatch 404 ^/_headers$
 # Security headers
 # -----------------------------------------------------------------------------
 <IfModule mod_headers.c>
-  # Only load code from this site; fonts from Google Fonts; the Contact page map from Google Maps.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+  # Same policy as the <meta> CSP in every page (GitHub Pages needs the meta copy), plus frame-ancestors,
+  # which only works as a header. Everything is self-hosted; the only third party is the Contact page map.
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; frame-src https://maps.google.com https://www.google.com; form-action mailto:; base-uri 'none'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'"
   # Browsers remember to use HTTPS only for a year (applies to subdomains too)
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header always set X-Content-Type-Options "nosniff"
@@ -100,5 +103,6 @@ RedirectMatch 404 ^/_headers$
   ExpiresByType image/png "access plus 1 month"
   ExpiresByType image/jpeg "access plus 1 month"
   ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType application/manifest+json "access plus 1 week"
 </IfModule>

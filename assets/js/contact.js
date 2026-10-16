@@ -122,10 +122,14 @@
       window.location.href = lastLink;
     }
 
+    /* Built with DOM nodes (no innerHTML) so the page works under the Trusted Types CSP. */
     var text = success.querySelector('[data-success-text]');
-    text.innerHTML = wa
-      ? 'WhatsApp should now be open with your message ready to send to <strong>+91 70106 40835</strong>. Just press <strong>Send</strong>.'
-      : 'Your email app should now be open with your message addressed to <strong>' + EMAIL + '</strong>. Just press <strong>Send</strong>.';
+    var strong = function (s) { var b = document.createElement('strong'); b.textContent = s; return b; };
+    text.replaceChildren(
+      wa ? 'WhatsApp should now be open with your message ready to send to ' : 'Your email app should now be open with your message addressed to ',
+      strong(wa ? '+91 70106 40835' : EMAIL),
+      '. Just press ', strong('Send'), '.'
+    );
     var again = success.querySelector('[data-open-again]');
     again.setAttribute('href', lastLink);
     if (wa) { again.setAttribute('target', '_blank'); again.setAttribute('rel', 'noopener'); }

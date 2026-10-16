@@ -2,6 +2,8 @@
 <html lang="en-IN" data-theme="dark" class="no-js">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; frame-src https://maps.google.com https://www.google.com; form-action mailto:; base-uri 'none'; object-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
 <title>Contact CyFocus | info@cyfocus.in · WhatsApp +91 70106 40835 · Salem</title>
@@ -27,14 +29,13 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<script src="assets/js/boot.js?v=2026100908"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
-<link rel="stylesheet" href="assets/css/style.css?v=2026100909">
+<script src="assets/js/boot.js?v=2026101601"></script>
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=2026101601">
 </head>
 <body data-page="contact">
-<script src="assets/js/icons.js?v=20261009"></script>
+<script src="assets/js/icons.js?v=2026101601"></script>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="bg-scene" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span><span class="bg-grid"></span><span class="bg-noise"></span></div>
 <div class="preloader" aria-hidden="true"><div class="preloader-inner"><svg class="emblem-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g><path class="em-arc em-o" pathLength="1" d="M12.09 47.35A38 38 0 0 1 46.69 12.14"/><path class="em-arc em-o" pathLength="1" d="M53.31 12.14A38 38 0 0 1 87.91 47.35"/><path class="em-arc em-g" pathLength="1" d="M87.91 52.65A38 38 0 0 1 53.97 87.79"/><path class="em-arc em-g" pathLength="1" d="M46.03 87.79A38 38 0 0 1 12.09 52.65"/></g><rect class="em-bar" x="46.6" y="72" width="6.8" height="25" rx="1"/><path class="em-shield" d="M50 24C57 29.5 64 31 70 31V52C70 65 60 73 50 78C40 73 30 65 30 52V31C36 31 43 29.5 50 24Z"/><circle class="em-key" cx="50" cy="47" r="5.2"/><path class="em-key" d="M47.6 50h4.8l1.6 13h-8z"/></svg><div class="preloader-bar"><span></span></div></div></div>
@@ -65,7 +66,7 @@
 <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site menu">
   <div class="drawer-head">
     <a class="brand" href="index.html" aria-label="CyFocus home"><img class="logo logo--dark" src="assets/img/brand/logo-dark.webp" width="640" height="202" alt="CyFocus"><img class="logo logo--light" src="assets/img/brand/logo-light.webp" width="640" height="202" alt="CyFocus"></a>
-    <div style="display:flex;gap:8px">
+    <div class="u-flex8">
       <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme"><svg class="ico i-sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="ico i-moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
       <button class="icon-btn" type="button" data-drawer-close aria-label="Close menu"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button>
     </div>
@@ -89,16 +90,16 @@
 <section class="page-hero simple">
   <div class="container">
     <div data-reveal><nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><svg class="ico" aria-hidden="true"><use href="#i-chevron-right"/></svg><span aria-current="page">Contact</span></nav></div>
-    <span class="eyebrow" data-reveal style="--i:1">Contact</span>
-    <h1 data-reveal style="--i:2">Let’s bring your project into <span class="grad-text">focus.</span></h1>
-    <p class="lead" data-reveal style="--i:3">Tell us what you need: a website, a server, a security review, a forensic investigation or something else entirely. We usually reply within one business week.</p>
+    <span class="eyebrow u-i1" data-reveal>Contact</span>
+    <h1 class="u-i2" data-reveal>Let’s bring your project into <span class="grad-text">focus.</span></h1>
+    <p class="lead u-i3" data-reveal>Tell us what you need: a website, a server, a security review, a forensic investigation or something else entirely. We usually reply within one business week.</p>
   </div>
 </section>
 
-<section class="section" style="padding-top:0">
+<section class="section u-pt0">
   <div class="container contact-grid">
     <div>
-      <form class="form glass" id="contact-form" novalidate data-reveal aria-describedby="form-note">
+      <form class="form glass" id="contact-form" action="mailto:info@cyfocus.in" method="post" enctype="text/plain" novalidate data-reveal aria-describedby="form-note">
         <div class="form-row">
           <div class="field"><label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label><input class="input" id="f-name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Your name" aria-describedby="e-name"><span class="error-msg" id="e-name" data-error="name"></span></div>
           <div class="field"><label for="f-email">Email <span class="req" aria-hidden="true">*</span></label><input class="input" id="f-email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="you@example.com" aria-describedby="e-email"><span class="error-msg" id="e-email" data-error="email"></span></div>
@@ -118,27 +119,27 @@
         <div class="field">
           <label for="f-message">How can we help? <span class="req" aria-hidden="true">*</span></label>
           <textarea class="textarea" id="f-message" name="message" required maxlength="1500" placeholder="A few lines about your requirement, timeline and budget…" aria-describedby="e-message msg-count"></textarea>
-          <div style="display:flex;justify-content:space-between;gap:12px"><span class="error-msg" id="e-message" data-error="message"></span><span class="hint" id="msg-count" style="margin-left:auto">0 / 1500</span></div>
+          <div class="u-flex-between"><span class="error-msg" id="e-message" data-error="message"></span><span class="hint u-ml-auto" id="msg-count">0 / 1500</span></div>
         </div>
         <div>
           <label class="check"><input type="checkbox" name="consent" id="f-consent" required aria-describedby="e-consent"><span>I agree that CyFocus may contact me about this enquiry, as described in the <a href="legal.html#privacy">privacy policy</a>.</span></label>
           <span class="error-msg" id="e-consent" data-error="consent"></span>
         </div>
         <div class="form-foot">
-          <span class="hint" style="display:inline-flex;align-items:center;gap:8px"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg>Your details are only used to reply to you.</span>
+          <span class="hint u-iflex8"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg>Your details are only used to reply to you.</span>
           <button class="btn btn-primary" type="submit"><span data-btn-label>Continue to Email</span><svg class="ico ico-move" aria-hidden="true" data-btn-icon><use href="#i-send"/></svg></button>
         </div>
       </form>
       <div class="form-success glass" id="form-success" tabindex="-1" role="status">
         <span class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>
-        <h2 style="font-size:1.8rem">Almost there!</h2>
+        <h2 class="u-fs-18">Almost there!</h2>
         <p class="muted" data-success-text>Your email app should now be open with your message ready.</p>
         <div class="actions">
           <a class="btn btn-primary btn-sm" data-open-again href="mailto:info@cyfocus.in"><svg class="ico" aria-hidden="true"><use href="#i-external"/></svg>Open again</a>
           <button class="btn btn-ghost btn-sm" type="button" data-copy-msg><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>Copy message</button>
           <button class="btn btn-ghost btn-sm" type="button" data-reset><svg class="ico" aria-hidden="true"><use href="#i-refresh"/></svg>New enquiry</button>
         </div>
-        <p class="hint" style="margin:18px 0 0">Nothing opened? Email <a class="accent" href="mailto:info@cyfocus.in">info@cyfocus.in</a> or WhatsApp <a class="accent" href="https://wa.me/917010640835" target="_blank" rel="noopener">+91 70106 40835</a>.</p>
+        <p class="hint u-m-18-0-0">Nothing opened? Email <a class="accent" href="mailto:info@cyfocus.in">info@cyfocus.in</a> or WhatsApp <a class="accent" href="https://wa.me/917010640835" target="_blank" rel="noopener">+91 70106 40835</a>.</p>
       </div>
     </div>
 
@@ -218,7 +219,7 @@
 </footer>
 <button class="to-top" type="button" aria-label="Back to top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
 <div class="toast-region" aria-live="polite" aria-atomic="false"></div>
-<script src="assets/js/main.js?v=20261009" defer></script>
-<script src="assets/js/contact.js?v=2026100904" defer></script>
+<script src="assets/js/main.js?v=2026101601" defer></script>
+<script src="assets/js/contact.js?v=2026101601" defer></script>
 </body>
 </html>

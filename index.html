@@ -2,6 +2,8 @@
 <html lang="en-IN" data-theme="dark" class="no-js">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; frame-src https://maps.google.com https://www.google.com; form-action mailto:; base-uri 'none'; object-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
 <title>CyFocus | IT, Cloud, Cybersecurity &amp; Digital Forensics in Salem</title>
@@ -27,15 +29,14 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<script src="assets/js/boot.js?v=2026100908"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
-<link rel="stylesheet" href="assets/css/style.css?v=2026100909">
+<script src="assets/js/boot.js?v=2026101601"></script>
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=2026101601">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"CyFocus","url":"https://cyfocus.in/","logo":"https://cyfocus.in/assets/img/brand/icon-512.png","image":"https://cyfocus.in/assets/img/brand/og-image.jpg","description":"IT company in Salem, Tamil Nadu offering web development and hosting, cloud and server management, cybersecurity, digital forensics, AI, IT support, creative media and financial-literacy services.","slogan":"People · Technology · A Safer Tomorrow","email":"info@cyfocus.in","contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"info@cyfocus.in","url":"https://wa.me/917010640835"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"17:00"}],"address":{"@type":"PostalAddress","addressLocality":"Salem","addressRegion":"Tamil Nadu","addressCountry":"IN"},"areaServed":"IN","founder":{"@type":"Person","name":"Rajeshwari R"},"employee":[{"@type":"Person","name":"Vignesh R","jobTitle":"Chief Executive Officer"}],"knowsAbout":["Web development","Web hosting","WordPress","AWS","Cloud management","Cybersecurity","Cloud Services","Digital forensics","Data recovery","Machine learning"]}</script>
 </head>
 <body data-page="home">
-<script src="assets/js/icons.js?v=20261009"></script>
+<script src="assets/js/icons.js?v=2026101601"></script>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="bg-scene" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span><span class="bg-grid"></span><span class="bg-noise"></span></div>
 <div class="preloader" aria-hidden="true"><div class="preloader-inner"><svg class="emblem-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g><path class="em-arc em-o" pathLength="1" d="M12.09 47.35A38 38 0 0 1 46.69 12.14"/><path class="em-arc em-o" pathLength="1" d="M53.31 12.14A38 38 0 0 1 87.91 47.35"/><path class="em-arc em-g" pathLength="1" d="M87.91 52.65A38 38 0 0 1 53.97 87.79"/><path class="em-arc em-g" pathLength="1" d="M46.03 87.79A38 38 0 0 1 12.09 52.65"/></g><rect class="em-bar" x="46.6" y="72" width="6.8" height="25" rx="1"/><path class="em-shield" d="M50 24C57 29.5 64 31 70 31V52C70 65 60 73 50 78C40 73 30 65 30 52V31C36 31 43 29.5 50 24Z"/><circle class="em-key" cx="50" cy="47" r="5.2"/><path class="em-key" d="M47.6 50h4.8l1.6 13h-8z"/></svg><div class="preloader-bar"><span></span></div></div></div>
@@ -66,7 +67,7 @@
 <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Site menu">
   <div class="drawer-head">
     <a class="brand" href="index.html" aria-label="CyFocus home"><img class="logo logo--dark" src="assets/img/brand/logo-dark.webp" width="640" height="202" alt="CyFocus"><img class="logo logo--light" src="assets/img/brand/logo-light.webp" width="640" height="202" alt="CyFocus"></a>
-    <div style="display:flex;gap:8px">
+    <div class="u-flex8">
       <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme"><svg class="ico i-sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="ico i-moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
       <button class="icon-btn" type="button" data-drawer-close aria-label="Close menu"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button>
     </div>
@@ -91,20 +92,20 @@
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="eyebrow" data-reveal>IT · Cloud · Cybersecurity · Forensics</span>
-      <h1 data-reveal style="--i:1">Secure, scalable IT, brought into <span class="grad-text glow-text">focus.</span></h1>
-      <p class="rotator-line" data-reveal style="--i:2"><span>We</span><span class="rotator" data-rotator aria-hidden="true"><span>build websites.</span><span>manage servers.</span><span>secure networks.</span><span>monitor with Wazuh.</span><span>investigate incidents.</span><span>recover lost data.</span><span>create content.</span></span><span class="sr-only">build websites, manage servers, secure networks, monitor with Wazuh, investigate incidents, recover lost data and create content.</span></p>
-      <p class="lead" data-reveal style="--i:3">One accountable team for websites, email, domains, AWS and VPS servers, Cloud Services, digital forensics, AI, creative media and financial literacy. Based in Salem, serving clients across India and beyond.</p>
-      <div class="hero-cta" data-reveal style="--i:4">
+      <h1 class="u-i1" data-reveal>Secure, scalable IT, brought into <span class="grad-text glow-text">focus.</span></h1>
+      <p class="rotator-line u-i2" data-reveal><span>We</span><span class="rotator" data-rotator aria-hidden="true"><span>build websites.</span><span>manage servers.</span><span>secure networks.</span><span>monitor with Wazuh.</span><span>investigate incidents.</span><span>recover lost data.</span><span>create content.</span></span><span class="sr-only">build websites, manage servers, secure networks, monitor with Wazuh, investigate incidents, recover lost data and create content.</span></p>
+      <p class="lead u-i3" data-reveal>One accountable team for websites, email, domains, AWS and VPS servers, Cloud Services, digital forensics, AI, creative media and financial literacy. Based in Salem, serving clients across India and beyond.</p>
+      <div class="hero-cta u-i4" data-reveal>
         <a class="btn btn-primary" href="services.html">Explore services <svg class="ico ico-move" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
         <a class="btn btn-ghost" href="contact.html"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg> Talk to an expert</a>
       </div>
-      <ul class="hero-points" data-reveal style="--i:5">
+      <ul class="hero-points u-i5" data-reveal>
         <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>Security-first</li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>Windows · Linux · macOS</li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-check-circle"/></svg>AWS · Azure · GCP</li>
       </ul>
     </div>
-    <div class="hero-art" data-reveal="zoom" style="--i:2">
+    <div class="hero-art u-i2" data-reveal="zoom">
       <div class="hero-visual" aria-hidden="true">
         <svg class="circuits" viewBox="0 0 540 540" fill="none">
   <path class="trace-dim" d="M200 140 L160 100 V30"/><circle class="node-dim" cx="160" cy="30" r="5"/>
@@ -112,18 +113,18 @@
   <path class="trace-dim" d="M230 414 V525"/><circle class="node-dim" cx="230" cy="525" r="5"/>
   <path class="trace-dim" d="M140 330 H60 L35 355"/><circle class="node-dim" cx="35" cy="355" r="5"/>
   <path class="trace-dim" d="M350 140 L385 105 H470"/><circle class="node-dim" cx="470" cy="105" r="5"/>
-  <path class="trace" pathLength="1" style="--d:.3s" d="M128 230 H80 L50 200 H18"/>
-  <path class="trace" pathLength="1" style="--d:.5s" d="M150 380 L110 420 H40"/>
-  <path class="trace" pathLength="1" style="--d:.4s" d="M270 124 V70 L300 40 H380"/>
-  <path class="trace" pathLength="1" style="--d:.6s" d="M412 240 H470 L500 210 V140"/>
-  <path class="trace" pathLength="1" style="--d:.7s" d="M400 360 L440 400 H520"/>
-  <path class="trace" pathLength="1" style="--d:.8s" d="M300 416 V470 L330 500 H420"/>
-  <circle class="node" style="--d:1.5s" cx="18" cy="200" r="7"/>
-  <circle class="node" style="--d:1.7s" cx="40" cy="420" r="7"/>
-  <circle class="node" style="--d:1.6s" cx="380" cy="40" r="7"/>
-  <circle class="node" style="--d:1.8s" cx="500" cy="140" r="7"/>
-  <circle class="node" style="--d:1.9s" cx="520" cy="400" r="7"/>
-  <circle class="node" style="--d:2s" cx="420" cy="500" r="7"/>
+  <path class="trace u-d3" pathLength="1" d="M128 230 H80 L50 200 H18"/>
+  <path class="trace u-d5" pathLength="1" d="M150 380 L110 420 H40"/>
+  <path class="trace u-d4" pathLength="1" d="M270 124 V70 L300 40 H380"/>
+  <path class="trace u-d6" pathLength="1" d="M412 240 H470 L500 210 V140"/>
+  <path class="trace u-d7" pathLength="1" d="M400 360 L440 400 H520"/>
+  <path class="trace u-d8" pathLength="1" d="M300 416 V470 L330 500 H420"/>
+  <circle class="node u-d15" cx="18" cy="200" r="7"/>
+  <circle class="node u-d17" cx="40" cy="420" r="7"/>
+  <circle class="node u-d16" cx="380" cy="40" r="7"/>
+  <circle class="node u-d18" cx="500" cy="140" r="7"/>
+  <circle class="node u-d19" cx="520" cy="400" r="7"/>
+  <circle class="node u-d20" cx="420" cy="500" r="7"/>
   <circle class="pulse" r="3.5" opacity="0"><animateMotion dur="3.2s" begin="2.2s" repeatCount="indefinite" path="M128 230 H80 L50 200 H18"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="3.2s" begin="2.2s" repeatCount="indefinite"/></circle>
   <circle class="pulse" r="3.5" opacity="0"><animateMotion dur="3.6s" begin="2.8s" repeatCount="indefinite" path="M270 124 V70 L300 40 H380"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="3.6s" begin="2.8s" repeatCount="indefinite"/></circle>
   <circle class="pulse" r="3.5" opacity="0"><animateMotion dur="3s" begin="3.4s" repeatCount="indefinite" path="M412 240 H470 L500 210 V140"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.85;1" dur="3s" begin="3.4s" repeatCount="indefinite"/></circle>
@@ -273,7 +274,7 @@
   <div class="container">
     <div class="cta-band glass" data-reveal="zoom">
       <svg class="cta-circuit" viewBox="0 0 600 300" fill="none" aria-hidden="true"><path d="M600 60H420l-40 40H260" stroke="url(#ctaG)" stroke-width="2"/><path d="M600 150H470l-30 30H330" stroke="url(#ctaG)" stroke-width="2"/><path d="M600 240H500l-40-40H380" stroke="url(#ctaG)" stroke-width="2"/><circle cx="260" cy="100" r="6" stroke="#FF3B0A" stroke-width="2.5"/><circle cx="330" cy="180" r="6" stroke="#FF3B0A" stroke-width="2.5"/><circle cx="380" cy="200" r="6" stroke="#FF7A2F" stroke-width="2.5"/><defs><linearGradient id="ctaG" x1="600" x2="250" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#FF3B0A" stop-opacity="0"/><stop offset="1" stop-color="#FF3B0A"/></linearGradient></defs></svg>
-      <div style="position:relative">
+      <div class="u-rel">
         <span class="eyebrow">Let's talk</span>
         <h2>Let’s bring your technology into focus.</h2>
         <p>Tell us what you are working on. We will reply with practical next steps, not jargon.</p>
@@ -324,7 +325,7 @@
 </footer>
 <button class="to-top" type="button" aria-label="Back to top"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
 <div class="toast-region" aria-live="polite" aria-atomic="false"></div>
-<script src="assets/js/main.js?v=20261009" defer></script>
+<script src="assets/js/main.js?v=2026101601" defer></script>
 
 </body>
 </html>

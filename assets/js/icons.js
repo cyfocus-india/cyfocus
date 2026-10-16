@@ -1,4 +1,5 @@
-/* CyFocus icon sprite — injected once, referenced with <svg><use href="#i-name"/></svg> */
+/* CyFocus icon sprite — injected once, referenced with <svg><use href="#i-name"/></svg>.
+   Built with DOM APIs (no innerHTML) so the site can enforce Trusted Types in its CSP. */
 (function () {
   var I = {
     shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
@@ -105,10 +106,25 @@
     list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
     filter: '<path d="M22 3H2l8 9.5V19l4 2v-8.5z"/>'
   };
-  var out = '<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs>';
-  for (var k in I) {
-    out += '<symbol id="i-' + k + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">' + I[k] + '</symbol>';
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs) {
+    var n = document.createElementNS(NS, tag);
+    for (var a in attrs) n.setAttribute(a, attrs[a]);
+    return n;
   }
-  out += '</defs></svg>';
-  document.body.insertAdjacentHTML('afterbegin', out);
+  var sprite = el('svg', { 'aria-hidden': 'true', focusable: 'false' });
+  sprite.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+  var defs = sprite.appendChild(el('defs', {}));
+  var shape = /<([a-z]+)([^>]*)\/>/g, attr = /([a-z-]+)="([^"]*)"/g, m, a;
+  for (var k in I) {
+    var sym = defs.appendChild(el('symbol', { id: 'i-' + k, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.75', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }));
+    shape.lastIndex = 0;
+    while ((m = shape.exec(I[k]))) {
+      var attrs = {};
+      attr.lastIndex = 0;
+      while ((a = attr.exec(m[2]))) attrs[a[1]] = a[2];
+      sym.appendChild(el(m[1], attrs));
+    }
+  }
+  document.body.insertBefore(sprite, document.body.firstChild);
 })();

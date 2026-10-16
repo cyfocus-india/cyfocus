@@ -3,6 +3,14 @@
    Palette derived from the CyFocus logo: signal orange, ink black, silver.
    ========================================================================== */
 
+/* ---------- Fonts (self-hosted variable fonts, SIL OFL 1.1 — see assets/fonts/LICENSE.txt) ---------- */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 600; font-display: swap; src: url("../fonts/inter-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 600; font-display: swap; src: url("../fonts/inter-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400 500; font-display: swap; src: url("../fonts/jetbrains-mono-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400 500; font-display: swap; src: url("../fonts/jetbrains-mono-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 500 700; font-display: swap; src: url("../fonts/space-grotesk-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 500 700; font-display: swap; src: url("../fonts/space-grotesk-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
 /* ---------- Tokens ---------- */
 :root {
   --brand: #FF3B0A;
@@ -828,3 +836,43 @@ a.card:hover, a.practice-card:hover { border-color: rgba(var(--brand-rgb), .35);
   body { background: #fff; color: #000; }
   .glass, .glass-lite { box-shadow: none; border-color: #ddd; background: #fff; }
 }
+
+/* ---------- Clickjacking defence: boot.js adds .is-framed when another site frames a page ---------- */
+html.is-framed body > * { display: none !important; }
+html.is-framed body::before { content: "For your security, cyfocus.in can't be shown inside another website. Please open https://cyfocus.in directly."; display: block; max-width: 34rem; margin: 15vh auto 0; padding: 0 16px; text-align: center; color: var(--text); }
+
+/* ---------- Utilities (replace inline style attributes so the CSP needs no 'unsafe-inline') ---------- */
+.u-flex8 { display: flex !important; gap: 8px !important; }
+.u-iflex8 { display: inline-flex !important; align-items: center !important; gap: 8px !important; }
+.u-flex-between { display: flex !important; justify-content: space-between !important; gap: 12px !important; }
+.u-jc-center { justify-content: center !important; }
+.u-rel { position: relative !important; }
+.u-pt0 { padding-top: 0 !important; }
+.u-pb0 { padding-bottom: 0 !important; }
+.u-pad-lg { padding: clamp(24px,4vw,44px) !important; border-radius: var(--radius-lg) !important; }
+.u-title-md { font-size: clamp(1.5rem,2.8vw,2.1rem) !important; margin-bottom: 22px !important; }
+.u-title-lg { font-size: clamp(1.6rem,3.4vw,2.2rem) !important; margin-top: 10px !important; }
+.u-fs-18 { font-size: 1.8rem !important; }
+.u-m0 { margin: 0 !important; }
+.u-m-18-0-0 { margin: 18px 0 0 !important; }
+.u-mt18 { margin-top: 18px !important; }
+.u-mb18 { margin-bottom: 18px !important; }
+.u-ml-auto { margin-left: auto !important; }
+.u-i1 { --i: 1 !important; }
+.u-i2 { --i: 2 !important; }
+.u-i3 { --i: 3 !important; }
+.u-i4 { --i: 4 !important; }
+.u-i5 { --i: 5 !important; }
+.u-d3 { --d: .3s !important; }
+.u-d4 { --d: .4s !important; }
+.u-d5 { --d: .5s !important; }
+.u-d6 { --d: .6s !important; }
+.u-d7 { --d: .7s !important; }
+.u-d8 { --d: .8s !important; }
+.u-d15 { --d: 1.5s !important; }
+.u-d16 { --d: 1.6s !important; }
+.u-d17 { --d: 1.7s !important; }
+.u-d18 { --d: 1.8s !important; }
+.u-d19 { --d: 1.9s !important; }
+.u-d20 { --d: 2s !important; }
+[hidden] { display: none !important; } /* keep [hidden] winning over the display utilities above */

@@ -1,7 +1,7 @@
 # CyFocus — security headers for Cloudflare Pages / Netlify (ignored by Apache, which uses .htaccess).
-# Keep in sync with .htaccess.
+# Keep in sync with .htaccess and the <meta> CSP in every page. Not used on GitHub Pages.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; frame-src https://maps.google.com https://www.google.com; form-action mailto:; base-uri 'none'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN

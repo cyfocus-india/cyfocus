@@ -9,6 +9,7 @@
 
   function $(sel, ctx) { return (ctx || doc).querySelector(sel); }
   function $$(sel, ctx) { return Array.prototype.slice.call((ctx || doc).querySelectorAll(sel)); }
+  var SVG_NS = 'http://www.w3.org/2000/svg';
 
   var store = {
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
@@ -17,12 +18,20 @@
 
   /* ---------- Toasts ---------- */
   var toastRegion = $('.toast-region');
-  function toast(message, icon) {
+  function icon(name) {
+    var svg = doc.createElementNS(SVG_NS, 'svg');
+    svg.setAttribute('class', 'ico');
+    svg.setAttribute('aria-hidden', 'true');
+    var use = svg.appendChild(doc.createElementNS(SVG_NS, 'use'));
+    use.setAttribute('href', '#i-' + name);
+    return svg;
+  }
+  function toast(message, iconName) {
     if (!toastRegion) return;
     var el = doc.createElement('div');
     el.className = 'toast';
-    el.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-' + (icon || 'check-circle') + '"/></svg><div></div>';
-    el.lastChild.textContent = message;
+    el.appendChild(icon(iconName || 'check-circle'));
+    el.appendChild(doc.createElement('div')).textContent = message;
     toastRegion.appendChild(el);
     setTimeout(function () {
       el.classList.add('out');
@@ -217,7 +226,7 @@
   /* ---------- Reveal on scroll ---------- */
   $$('[data-stagger]').forEach(function (group) {
     $$('[data-reveal]', group).forEach(function (el, i) {
-      if (!el.style.getPropertyValue('--i')) el.style.setProperty('--i', String(i % 8));
+      if (!/(^|\s)u-i\d(\s|$)/.test(el.getAttribute('class') || '')) el.style.setProperty('--i', String(i % 8));
     });
   });
   var revealEls = $$('[data-reveal]');
@@ -436,13 +445,17 @@
       };
     });
 
-    var escHTML = function (s) {
-      return s.replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
-    };
     var escRe = function (s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); };
-    var mark = function (text, re) {
-      if (!re) return escHTML(text);
-      return text.split(re).map(function (part, i) { return i % 2 ? '<mark>' + escHTML(part) + '</mark>' : escHTML(part); }).join('');
+    /* Highlight matches with DOM nodes (no innerHTML), so search text can never become markup. */
+    var mark = function (node, text, re) {
+      var parts = re ? text.split(re) : [text];
+      var frag = doc.createDocumentFragment();
+      parts.forEach(function (part, i) {
+        if (!part) return;
+        if (i % 2) frag.appendChild(doc.createElement('mark')).textContent = part;
+        else frag.appendChild(doc.createTextNode(part));
+      });
+      node.replaceChildren(frag);
     };
 
     var apply = function () {
@@ -460,8 +473,8 @@
           c.el.hidden = !ok;
           if (ok) {
             n++;
-            c.h.innerHTML = mark(c.ht, re);
-            c.p.innerHTML = mark(c.pt, re);
+            mark(c.h, c.ht, re);
+            mark(c.p, c.pt, re);
           }
         });
         g.hidden = n === 0;
