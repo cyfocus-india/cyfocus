@@ -1,0 +1,104 @@
+# =============================================================================
+# CyFocus — production configuration for Apache / LiteSpeed (Hostinger)
+# Upload this file together with the site. The same security headers are
+# mirrored in `_headers` for Cloudflare Pages / Netlify. Keep both in sync.
+# =============================================================================
+
+# No directory listings; don't advertise the server version
+Options -Indexes
+ServerSignature Off
+DirectoryIndex index.html
+
+# Custom error page (403 shows the same page so blocked files don't reveal they exist)
+ErrorDocument 403 /404.html
+ErrorDocument 404 /404.html
+
+AddDefaultCharset utf-8
+<IfModule mod_mime.c>
+  AddCharset utf-8 .html .css .js .txt .xml .webmanifest
+  AddType image/webp .webp
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Rewrites: HTTPS, canonical host, read-only methods
+# -----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # A static site only needs read-only methods (blocks TRACE, PUT, DELETE, POST probes…)
+  RewriteCond %{REQUEST_METHOD} !^(GET|HEAD|OPTIONS)$
+  RewriteRule .* - [R=405,L]
+
+  # Force HTTPS (also correct behind Hostinger's / Cloudflare's proxy)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Canonical host: www.cyfocus.in -> cyfocus.in
+  RewriteCond %{HTTP_HOST} ^www\.cyfocus\.in$ [NC]
+  RewriteRule ^ https://cyfocus.in%{REQUEST_URI} [R=301,L]
+
+  # /index.html -> / (matches the canonical URL)
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ / [R=301,L]
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Hide anything that isn't part of the public site
+# -----------------------------------------------------------------------------
+# Hidden files/folders (.htaccess, .git, .claude, .DS_Store…) except /.well-known/
+RedirectMatch 404 /\.(?!well-known/)
+# Source, backup, config and archive files
+RedirectMatch 404 (?i)\.(md|bak|old|orig|save|swp|tmp|log|sh|py|mjs|sql|sqlite|zip|tar|gz|7z|rar|ini|conf|cfg|env|yml|yaml|lock|psd|ai)$
+# Host-specific config file used by Cloudflare Pages / Netlify
+RedirectMatch 404 ^/_headers$
+
+# -----------------------------------------------------------------------------
+# Security headers
+# -----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  # Only load code from this site; fonts from Google Fonts; the Contact page map from Google Maps.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+  # Browsers remember to use HTTPS only for a year (applies to subdomains too)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), browsing-topics=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+
+  # Pages always revalidate so updates appear immediately
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# Performance: compression and caching
+# (CSS/JS links carry a ?v= version — bump it whenever those files change)
+# -----------------------------------------------------------------------------
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css application/javascript text/javascript application/json application/manifest+json image/svg+xml text/xml application/xml text/plain
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json application/manifest+json image/svg+xml text/xml application/xml text/plain
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 week"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType text/javascript "access plus 1 week"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType application/manifest+json "access plus 1 week"
+</IfModule>

@@ -1,0 +1,8 @@
+# CyFocus vulnerability disclosure (RFC 9116)
+# Found a security issue on cyfocus.in? Please report it privately to us first.
+Contact: mailto:info@cyfocus.in
+Contact: https://wa.me/917010640835
+Expires: 2027-10-09T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://cyfocus.in/.well-known/security.txt
+Policy: https://cyfocus.in/legal.html#engagements
