@@ -69,9 +69,11 @@
       pre.classList.add('done');
       try { sessionStorage.setItem('cyf-pre', '1'); } catch (e) { /* ignore */ }
     };
-    if (doc.readyState === 'complete') setTimeout(hidePre, 400);
-    else window.addEventListener('load', function () { setTimeout(hidePre, 300); });
-    setTimeout(hidePre, 1600);
+    // First visit only. Never hold the page back for long on slow connections (content is ready
+    // well before every image has loaded), so cap the wait at 0.9 s.
+    if (doc.readyState === 'complete') setTimeout(hidePre, 300);
+    else window.addEventListener('load', function () { setTimeout(hidePre, 200); });
+    setTimeout(hidePre, 900);
   }
 
   /* ---------- Theme ---------- */
@@ -382,6 +384,37 @@
       copyText(btn.getAttribute('data-copy'), btn.getAttribute('data-copy-label') || 'Copied');
     });
   });
+
+  /* ---------- Map: load the Google embed only when it's about to scroll into view ----------
+     Native loading="lazy" starts far too early on phones, pulling ~460 KB from Google on page load. */
+  $$('iframe[data-src]').forEach(function (frame) {
+    var load = function () { if (!frame.getAttribute('src')) frame.setAttribute('src', frame.getAttribute('data-src')); };
+    if (!('IntersectionObserver' in window)) { load(); return; }
+    var mapIO = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { mapIO.disconnect(); load(); }
+    }, { rootMargin: '300px 0px' });
+    mapIO.observe(frame);
+  });
+
+  /* ---------- 404: show the address that wasn't found (textContent, so it can never become markup) ---------- */
+  var nfPath = $('[data-nf-path]');
+  if (nfPath && !/\/404(\.html)?$/.test(location.pathname)) {
+    var missing = location.pathname;
+    try { missing = decodeURI(missing); } catch (e) { /* keep the encoded form */ }
+    $('code', nfPath).textContent = missing.length > 80 ? missing.slice(0, 77) + '…' : missing;
+    nfPath.hidden = false;
+    // Requests for admin panels, config files, server scripts or path tricks are scanners, not visitors
+    var probe = /(^|\/)(\.(env|git|svn|hg|aws|ssh|htpasswd|htaccess|ds_store)|wp-(admin|login|content|includes|config)|xmlrpc|phpmyadmin|pma|adminer|cgi-bin|server-status|actuator|phpunit|etc\/passwd|boaform|hnap1|owa|autodiscover|administrator|admin|login|cpanel|webmail|shell|backup|dump)|\.(php\d?|aspx?|jsp|cgi|sql|bak|old|swp|env|ini|log|ya?ml|tar|gz|tgz|zip|rar|7z)$|\.\.|<|>|%00|\x00/i;
+    var nfProbe = $('[data-nf-probe]');
+    if (nfProbe && (probe.test(missing) || probe.test(location.search))) nfProbe.hidden = false;
+  }
+
+  /* ---------- A word for anyone poking around in DevTools ---------- */
+  if (window.console && console.log) {
+    console.log('%cStop!', 'color:#FF3B0A;font:700 32px system-ui,sans-serif');
+    console.log('%cThis browser console is a tool for developers. If someone told you to paste something here, it is a scam that could give them access to your accounts.', 'font:16px system-ui,sans-serif');
+    console.log('%cSecurity researchers: cyfocus.in is a static site with a strict Content-Security-Policy. If you find a real vulnerability, please report it privately to info@cyfocus.in (see https://cyfocus.in/.well-known/security.txt). Unauthorised access to computer systems is an offence under India’s Information Technology Act, 2000 (Sections 43 and 66).', 'font:13px system-ui,sans-serif;color:#9A9AA6');
+  }
 
   /* ---------- Footer year ---------- */
   $$('[data-year]').forEach(function (el) { el.textContent = String(new Date().getFullYear()); });

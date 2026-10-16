@@ -1,8 +1,11 @@
 {
+  "id": "/",
   "name": "CyFocus",
   "short_name": "CyFocus",
   "description": "IT, cloud, cybersecurity and digital forensics from Salem, Tamil Nadu.",
+  "lang": "en-IN",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#07070A",
   "theme_color": "#07070A",

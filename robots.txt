@@ -1,3 +1,16 @@
+# CyFocus — https://cyfocus.in
+
+# Opt out of the Internet Archive (Wayback Machine). To remove existing snapshots,
+# the site owner also emails info@archive.org from an address on this domain.
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: archive.org_bot
+Disallow: /
+
+User-agent: ia_archiver-web.archive.org
+Disallow: /
+
 User-agent: *
 Allow: /
 

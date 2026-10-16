@@ -62,7 +62,7 @@ RedirectMatch 404 ^/_headers$
 <IfModule mod_headers.c>
   # Same policy as the <meta> CSP in every page (GitHub Pages needs the meta copy), plus frame-ancestors,
   # which only works as a header. Everything is self-hosted; the only third party is the Contact page map.
-  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'none'; frame-src https://maps.google.com https://www.google.com; form-action mailto:; base-uri 'none'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'"
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'self'; frame-src https://maps.google.com https://www.google.com; form-action 'self' mailto:; base-uri 'none'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'"
   # Browsers remember to use HTTPS only for a year (applies to subdomains too)
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header always set X-Content-Type-Options "nosniff"

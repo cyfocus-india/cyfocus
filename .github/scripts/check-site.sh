@@ -27,6 +27,12 @@ grep -n '<style' "${pages[@]}" && bad "<style> block found (move it to style.css
 grep -niE '(href|src|action)="\s*javascript:' "${pages[@]}" && bad "javascript: URL found"
 grep -nE '(href|src)="http://' "${pages[@]}" && bad "plain-http link or resource found"
 
+# GitHub Pages serves 404.html at any missing path, so its links and assets must be root-absolute
+grep -oE '(href|src|action)="[^"]*"' 404.html | grep -vE '="(/|#|https://|mailto:)' && bad "404.html: relative URL (use /path so it works at any depth)"
+
+# Keep the Internet Archive opt-out
+grep -q '^User-agent: ia_archiver$' robots.txt && grep -q '^User-agent: archive.org_bot$' robots.txt || bad "robots.txt lost the archive.org opt-out"
+
 # target=_blank must not hand the opener to the new page
 grep -oE '<a [^>]*target="_blank"[^>]*>' "${pages[@]}" | grep -v 'noopener' && bad "target=_blank link without rel=noopener"
 
