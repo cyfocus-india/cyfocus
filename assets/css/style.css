@@ -626,9 +626,9 @@ a.card:hover, a.practice-card:hover { border-color: rgba(var(--brand-rgb), .35);
 .info-card .card-icon { width: 46px; height: 46px; border-radius: 14px; }
 .info-card .card-icon .ico { width: 22px; height: 22px; }
 .info-card h3 { font-size: .8rem; font-family: var(--font-mono); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 2px 0 6px; }
-.info-card a, .info-card p { font-weight: 600; color: var(--text); margin: 0; word-break: break-word; }
-.info-card a { display: inline-block; padding: 2px 0; }
-.info-card a:hover { color: var(--accent-text); }
+.info-card a:not(.mini-btn), .info-card p { font-weight: 600; color: var(--text); margin: 0; word-break: break-word; }
+.info-card a:not(.mini-btn) { display: inline-block; padding: 2px 0; }
+.info-card a:not(.mini-btn):hover { color: var(--accent-text); }
 .info-card .sub { display: block; font-weight: 400; font-size: .85rem; color: var(--muted); margin-top: 2px; }
 .info-card .inline-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .mini-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; font: 500 .8rem var(--font-body); color: var(--text-2); background: var(--surface); border: 1px solid var(--border-2); transition: border-color .3s, color .3s; }
