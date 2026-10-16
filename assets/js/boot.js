@@ -1,4 +1,5 @@
-/* CyFocus — runs in <head> before first paint: upgrades to HTTPS, refuses to be framed by other
+/* CyFocus — runs in <head> before first paint: upgrades to HTTPS, drops /index.html from the
+   address bar, refuses to be framed by other
    sites, marks JS as available, applies the saved theme (no flash of the wrong theme) and skips the
    preloader after the first visit. Kept external so the site can use a strict Content-Security-Policy
    with no inline scripts. */
@@ -7,6 +8,10 @@
   if (w.location.protocol === 'http:' && /(^|\.)cyfocus\.in$/.test(w.location.hostname)) {
     w.location.replace('https://cyfocus.in' + w.location.pathname + w.location.search + w.location.hash);
     return;
+  }
+  /* GitHub Pages can't redirect /index.html to /, so tidy the address bar instead (same page, no reload). */
+  if (/\/index\.html$/.test(w.location.pathname) && w.history.replaceState) {
+    w.history.replaceState(null, '', w.location.pathname.replace(/index\.html$/, '') + w.location.search + w.location.hash);
   }
   var h = d.documentElement;
   /* Clickjacking defence: a meta CSP can't use frame-ancestors and GitHub Pages can't send
